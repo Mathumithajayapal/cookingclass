@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>CulinaryStudio Admin | Dashboard</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23D35400' d='M416 0C400 0 288 32 288 176V288c0 35.3 28.7 64 64 64h32V480c0 17.7 14.3 32 32 32s32-14.3 32-32V352 176 64c0-35.3-28.7-64-64-64zM64 16C64 7.8 57.9 1 49.7 .1S34.2 4.6 32.4 12.5L2.1 148.8C.7 155.1 0 161.5 0 167.9c0 45.9 35.1 83.6 80 87.7V480c0 17.7 14.3 32 32 32s32-14.3 32-32V255.6c44.9-4.1 80-41.8 80-87.7c0-6.4-.7-12.8-2.1-19.1L191.6 12.5c-1.8-8-9.3-13.3-17.4-12.4S160 7.8 160 16V150.2c0 5.4-4.4 9.8-9.8 9.8c-5.1 0-9.3-3.9-9.8-9L127.9 14.6C127.2 6.3 120.3 0 112 0s-15.2 6.3-15.9 14.6L83.7 151c-.5 5.1-4.7 9-9.8 9c-5.4 0-9.8-4.4-9.8-9.8V16z'/></svg>" type="image/svg+xml">
+    <!-- Google Fonts + Font Awesome 6 -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Branding Font (Matches Main Site) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Variables extracted from index.html for perfect matching */
+        :root {
+            --text-main: #2C2A28; 
+            --accent-color: #D35400;
+            --border-color: #eef2f6; 
+            --sidebar-bg: #ffffff;
+            --sidebar-text: #64748b;
+            --sidebar-text-hover: #D35400;
+            --sidebar-bg-hover: rgba(211, 84, 0, 0.08);
+            --sidebar-active-bg: #D35400;
+            --sidebar-active-text: #ffffff;
+            --badge-bg: #f8fafc;
+            --badge-border: #eef2f6;
+            --badge-text-main: #1a1f2e;
+        }
+
+        /* Dark mode overrides */
+        body.dark {
+            --text-main: #EAE6DF; 
+            --accent-color: #E67E22;
+            --border-color: #2d2d3a;
+            --sidebar-bg: #1e1e2a;
+            --sidebar-text: #cbd5e6;
+            --sidebar-text-hover: #ffffff;
+            --sidebar-bg-hover: rgba(211, 84, 0, 0.2);
+            --sidebar-active-bg: #D35400;
+            --sidebar-active-text: #ffffff;
+            --badge-bg: rgba(211, 84, 0, 0.18);
+            --badge-border: rgba(211, 84, 0, 0.25);
+            --badge-text-main: #ffffff;
+        }
+
+        /* Logo Utility Classes (Mimicking Tailwind exact properties from Source 10) */
+        .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+        .brand-logo { font-family: 'Playfair Display', serif; }
+        .tracking-widest { letter-spacing: 0.1em; }
+        .uppercase { text-transform: uppercase; }
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .whitespace-nowrap { white-space: nowrap; }
+
+        body {
+            background: #f0f2f8;
+            font-family: 'Inter', sans-serif;
+            color: #1a1f2e;
+            line-height: 1.4;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        /* Dark Mode */
+        body.dark {
+            background: #0f0f1a;
+            color: #e2e8f0;
+        }
+
+        body.dark .stat-card,
+        body.dark .data-card,
+        body.dark .quick-actions,
+        body.dark .top-bar {
+            background: #1e1e2a;
+            border-color: #2d2d3a;
+        }
+
+        body.dark .stat-title,
+        body.dark .data-table th,
+        body.dark .data-table td {
+            color: #cbd5e1;
+        }
+
+        body.dark .data-table th {
+            background: #2a2a35;
+        }
+
+        body.dark .data-table td {
+            border-bottom-color: #2d2d3a;
+        }
+
+        body.dark .stat-number {
+            color: #c084fc;
+        }
+
+        body.dark .quick-btn {
+            background: #2a2a35;
+            border-color: #3a3a4a;
+            color: #e2e8f0;
+        }
+
+        body.dark .action-icons .action-icon-btn {
+            color: #94a3b8;
+            background: #2a2a35;
+        }
+
+        body.dark .main-footer {
+            border-top-color: #2d2d3a;
+            color: #94a3b8;
+        }
+
+        body.dark .toast-msg {
+            background: #1e293b;
+        }
+
+        body.dark .hamburger-btn {
+            background: #2a2a35;
+            border-color: #3a3a4a;
+            color: #e2e8f0;
+        }
+
+        body.dark .hamburger-btn:hover {
+            background: var(--accent-color); 
+            color: white;
+            border-color: var(--accent-color);
+        }
+
+        body.dark .page-heading h1 {
+            background: linear-gradient(135deg, #e2e8f0, var(--accent-color)); 
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* RTL Support */
+        body.rtl {
+            direction: rtl;
+        }
+
+        body.rtl .nav-item {
+            justify-content: flex-end;
+        }
+
+        body.rtl .nav-item i {
+            margin-left: 8px;
+            margin-right: 0;
+        }
+
+        body.rtl .stat-icon {
+            float: left;
+        }
+
+        body.rtl .quick-btn i {
+            margin-left: 8px;
+            margin-right: 0;
+        }
+
+        body.rtl .main-footer {
+            flex-direction: row-reverse;
+        }
+
+        body.rtl .data-table th,
+        body.rtl .data-table td {
+            text-align: right;
+        }
+
+        body.rtl .toast-msg {
+            right: auto;
+            left: 24px;
+        }
+
+        body.rtl .top-bar {
+            flex-direction: row;
+        }
+
+        body.rtl .left-top-group {
+            order: 0;
+        }
+
+        body.rtl .action-icons {
+            order: 1;
+            flex-direction: row;
+        }
+
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* ========= SIDEBAR ========= */
+        .sidebar {
+            width: 320px;
+            background: var(--sidebar-bg); /* Now White in Light Mode */
+            border-right: 1px solid var(--border-color); /* Added border to separate from main bg */
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 28px 20px;
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), background-color 0.2s ease, border-color 0.2s ease;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        /* Mobile Sidebar (≤900px) */
+        @media (max-width: 900px) {
+            .sidebar {
+                position: fixed;
+                top: 0;
+                left: 0;
+                transform: translateX(-100%);
+                width: 320px;
+                height: 100%;
+                z-index: 1050;
+                box-shadow: 0 0 30px rgba(0, 0, 0, 0.15);
+            }
+            body.dark .sidebar {
+                box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
+            }
+
+            body.rtl .sidebar {
+                transform: translateX(100%);
+                left: auto;
+                right: 0;
+            }
+
+            .sidebar.open {
+                transform: translateX(0) !important;
+            }
+
+            .sidebar-overlay {
+                display: none;
+            }
+
+            .sidebar-overlay.active {
+                display: block;
+            }
+        }
+
+        @media (min-width: 901px) {
+            .sidebar-overlay {
+                display: none !important;
+            }
+        }
+
+        /* Hamburger Button - visible only on mobile/tablet */
+        .hamburger-btn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid #eef2f6;
+            border-radius: 40px;
+            padding: 10px 18px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #1a1f2e;
+            transition: 0.2s;
+            white-space: nowrap;
+            width: fit-content;
+        }
+
+        @media (max-width: 900px) {
+            .hamburger-btn {
+                display: flex;
+            }
+        }
+
+        .hamburger-btn i {
+            font-size: 1.1rem;
+        }
+
+        .hamburger-btn:hover {
+            background: var(--accent-color); 
+            color: white;
+            border-color: var(--accent-color); 
+        }
+
+        .sidebar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(2px);
+            z-index: 1040;
+        }
+
+        .sidebar::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .sidebar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.03);
+        }
+
+        body.dark .sidebar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .sidebar::-webkit-scrollbar-thumb {
+            background: rgba(211, 84, 0, 0.4); 
+            border-radius: 4px;
+        }
+
+        .logo-container {
+            margin-bottom: 32px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .admin-badge {
+            background: var(--badge-bg);
+            border-radius: 16px;
+            padding: 12px 16px;
+            margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--badge-border); 
+            transition: all 0.2s ease;
+        }
+
+        .admin-avatar {
+            background: var(--accent-color); 
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .admin-info h4 {
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 2px;
+            color: var(--badge-text-main);
+            transition: color 0.2s ease;
+        }
+
+        .admin-info span {
+            font-size: 11px;
+            color: #64748b;
+            transition: color 0.2s ease;
+        }
+
+        body.dark .admin-info span {
+            color: #cbd5e1;
+        }
+
+        .nav-menu {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s;
+            color: var(--sidebar-text);
+            cursor: pointer;
+        }
+
+        .nav-item i {
+            width: 24px;
+            font-size: 1.15rem;
+        }
+
+        .nav-item.active {
+            background: var(--sidebar-active-bg); 
+            color: var(--sidebar-active-text);
+            box-shadow: 0 6px 14px rgba(211, 84, 0, 0.25); 
+        }
+
+        .nav-item:not(.active):hover {
+            background: var(--sidebar-bg-hover); 
+            color: var(--sidebar-text-hover);
+        }
+
+        .sidebar-footer {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            transition: border-color 0.2s ease;
+        }
+
+        .weather-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--badge-bg);
+            border: 1px solid var(--badge-border);
+            color: var(--badge-text-main);
+            padding: 10px 14px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .weather-info i {
+            color: #eab308;
+            font-size: 14px;
+        }
+
+        .logout-btn-sidebar {
+            background: rgba(220, 38, 38, 0.08);
+            color: #dc2626;
+            padding: 12px 16px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid rgba(220, 38, 38, 0.15);
+            width: 100%;
+            text-decoration: none;
+            justify-content: center;
+        }
+
+        body.dark .logout-btn-sidebar {
+            background: rgba(220, 38, 38, 0.15);
+            color: #fca5a5;
+            border-color: rgba(220, 38, 38, 0.3);
+        }
+
+        .logout-btn-sidebar:hover {
+            background: #dc2626;
+            color: white;
+            border-color: #dc2626;
+        }
+
+        /* ========= MAIN CONTENT ========= */
+        .main-content {
+            flex: 1;
+            padding: 24px 28px;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+
+        /* TOP BAR - clean minimal */
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border-radius: 60px;
+            padding: 8px 24px;
+            border: 1px solid #eef2f6;
+            margin-bottom: 28px;
+            transition: background 0.2s;
+            gap: 16px;
+            flex-wrap: nowrap;
+        }
+
+        .left-top-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-shrink: 0;
+        }
+
+        .page-heading h1 {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #1f2b3c, var(--accent-color)); 
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin: 0;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Action icons group - clean and minimal */
+        .action-icons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        /* Individual action button - pure background circle */
+        .action-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(211, 84, 0, 0.08); 
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #3b4b62;
+            font-size: 1.2rem;
+        }
+
+        .action-icon-btn:hover {
+            background: rgba(211, 84, 0, 0.15); 
+            color: var(--accent-color); 
+            transform: scale(1.02);
+        }
+
+        /* RTL Text-only button - NO icon, clean background, just text */
+        .rtl-text-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 56px;
+            padding: 0 16px;
+            height: 42px;
+            border-radius: 42px;
+            background: rgba(211, 84, 0, 0.08); 
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.3px;
+            color: #3b4b62;
+        }
+
+        .rtl-text-btn:hover {
+            background: rgba(211, 84, 0, 0.15); 
+            color: var(--accent-color); 
+        }
+
+        body.dark .rtl-text-btn {
+            background: #2a2a35;
+            color: #cbd5e1;
+        }
+
+        body.dark .rtl-text-btn:hover {
+            background: #3a3a4a;
+            color: var(--accent-color); 
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .main-content {
+                padding: 16px;
+            }
+            .top-bar {
+                padding: 8px 18px;
+                flex-wrap: nowrap;
+            }
+            .page-heading h1 {
+                font-size: 18px;
+                white-space: nowrap;
+            }
+            .action-icon-btn {
+                width: 38px;
+                height: 38px;
+                font-size: 1rem;
+            }
+            .rtl-text-btn {
+                height: 38px;
+                min-width: 52px;
+                padding: 0 14px;
+                font-size: 0.8rem;
+            }
+            .left-top-group {
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .top-bar {
+                flex-wrap: nowrap;
+                justify-content: space-between;
+            }
+            .page-heading h1 {
+                font-size: 14px;
+                white-space: nowrap;
+            }
+            .hamburger-btn {
+                padding: 6px 10px;
+            }
+            .hamburger-btn span {
+                display: none;
+            }
+            .action-icon-btn {
+                width: 34px;
+                height: 34px;
+                font-size: 0.9rem;
+            }
+            .rtl-text-btn {
+                height: 34px;
+                min-width: 46px;
+                padding: 0 10px;
+                font-size: 0.75rem;
+            }
+        }
+
+        /* Page Sections */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .page-section.active-section {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 22px;
+            margin-bottom: 36px;
+        }
+        .stat-card {
+            background: white;
+            border-radius: 28px;
+            padding: 20px 18px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.02);
+            border: 1px solid #eef2f6;
+            transition: transform 0.2s;
+        }
+        .stat-card:hover { transform: translateY(-3px); border-color: var(--accent-color); } 
+        .stat-title { font-size: 14px; font-weight: 500; color: #5b6e8c; margin-bottom: 12px; }
+        .stat-number { font-size: 40px; font-weight: 800; color: #0b2b26; line-height: 1; }
+        .stat-icon { float: right; font-size: 2rem; color: #d4dfed; }
+
+        .data-card {
+            background: white;
+            border-radius: 28px;
+            padding: 28px;
+            border: 1px solid #eef2f6;
+            margin-bottom: 28px;
+            overflow-x: auto;
+        }
+        .data-card h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #1e293b;
+            border-left: 4px solid var(--accent-color); 
+            padding-left: 16px;
+        }
+        body.dark .data-card h3 { color: #f1f5f9; }
+        .data-card h3 i { font-size: 1.4rem; color: var(--accent-color); } 
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 500px;
+        }
+        .data-table th, .data-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #edf2f7;
+        }
+        .data-table th {
+            font-weight: 600;
+            color: #475569;
+            background: #f8fafc;
+            font-size: 0.85rem;
+        }
+        body.dark .data-table th { background: #252530; color: #cbd5e1; }
+        .badge {
+            padding: 5px 12px;
+            border-radius: 40px;
+            font-size: 12px;
+            font-weight: 600;
+            display: inline-block;
+        }
+        .badge-active { background: #e0f2fe; color: #0369a1; }
+        body.dark .badge-active { background: #0c4a6e; color: #bae6fd; }
+
+        .quick-actions {
+            background: white;
+            border-radius: 28px;
+            padding: 24px 28px;
+            margin-top: 8px;
+            border: 1px solid #eef2f6;
+        }
+        .quick-actions h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+        .quick-grid { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 8px; }
+        .quick-btn {
+            background: #f8fafd;
+            padding: 12px 22px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #e2e8f0;
+            color: #1e293b;
+        }
+        .quick-btn i { color: var(--accent-color); } 
+        .quick-btn:hover { background: var(--accent-color); color: white; border-color: var(--accent-color); transform: translateY(-2px); } 
+        .quick-btn:hover i { color: white; }
+
+        .main-footer {
+            margin-top: 44px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            color: #6c7a91;
+            border-top: 1px solid #e2e8f0;
+            padding-top: 24px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        @media (max-width: 900px) {
+            .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .data-card { padding: 20px; }
+        }
+        @media (max-width: 500px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .quick-grid { flex-direction: column; }
+            .quick-btn { justify-content: center; }
+            .main-footer { flex-direction: column; text-align: center; }
+        }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #1e293b;
+            color: white;
+            padding: 10px 22px;
+            border-radius: 40px;
+            font-size: 13px;
+            z-index: 1100;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        body.rtl .toast-msg { right: auto; left: 24px; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+        <aside class="sidebar" id="mainSidebar">
+            
+            <!-- LOGO INTEGRATED FROM INDEX.HTML FOR 100% MATCH -->
+            <div class="logo-container">
+                <a href="index.html" class="text-2xl brand-logo tracking-widest uppercase flex items-center whitespace-nowrap" style="color: var(--text-main) !important; text-decoration: none;">
+                    <i class="fas fa-utensils" style="color: var(--accent-color); margin-right: 0.45em; font-size: 0.9em; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(211,84,0,0.35));"></i>CulinaryStudio
+                </a>
+            </div>
+
+            <div class="admin-badge">
+                <div class="admin-avatar">MC</div>
+                <div class="admin-info"><h4>Master Chef</h4><span>full access • director</span></div>
+            </div>
+            <div class="nav-menu">
+                <div class="nav-item active" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</div>
+                <div class="nav-item" data-page="classes"><i class="fas fa-book-open"></i> Masterclasses</div>
+                <div class="nav-item" data-page="students"><i class="fas fa-users"></i> Enrolled Students</div>
+                <div class="nav-item" data-page="chefs"><i class="fas fa-chalkboard-user"></i> Instructors</div>
+                <div class="nav-item" data-page="reports"><i class="fas fa-chart-line"></i> Revenue & Reports</div>
+                <div class="nav-item" data-page="settings"><i class="fas fa-cog"></i> System Settings</div>
+            </div>
+            <div class="sidebar-footer">
+                <div class="weather-info"><i class="fas fa-sun"></i><span>28°C Sunny</span></div>
+                <a href="login.html" class="logout-btn-sidebar" id="sidebarLogoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="top-bar">
+                <div class="left-top-group">
+                    <div class="hamburger-btn" id="hamburgerBtn"><i class="fas fa-bars"></i><span>Menu</span></div>
+                    <div class="page-heading">
+                        <h1 id="pageHeading"><i class="fas fa-tachometer-alt" style="color:#D35400;"></i> Dashboard</h1>
+                    </div>
+                </div>
+                <div class="action-icons">
+                    <!-- Dark mode: pure icon button -->
+                    <div class="action-icon-btn" id="darkModeIcon" title="Dark Mode">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <!-- RTL toggle: TEXT ONLY - no icon, clean background -->
+                    <div id="rtlToggleBtn" class="rtl-text-btn">
+                        <span id="rtlToggleText">LTR</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DASHBOARD SECTION -->
+            <div id="dashboard-section" class="page-section active-section">
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-title"><i class="fas fa-book-open"></i> Active Classes</div><div class="stat-number">18</div><div class="stat-icon"><i class="fas fa-fire-burner"></i></div></div>
+                    <div class="stat-card"><div class="stat-title"><i class="fas fa-user-friends"></i> Total Students</div><div class="stat-number">342</div><div class="stat-icon"><i class="fas fa-users"></i></div></div>
+                    <div class="stat-card"><div class="stat-title"><i class="fas fa-id-card"></i> Master Chefs</div><div class="stat-number">12</div><div class="stat-icon"><i class="fas fa-bowl-rice"></i></div></div>
+                    <div class="stat-card"><div class="stat-title"><i class="fas fa-chart-pie"></i> Monthly Bookings</div><div class="stat-number">▲ 14%</div><div class="stat-icon"><i class="fas fa-calendar-check"></i></div></div>
+                </div>
+                <div class="data-card">
+                    <h3><i class="fas fa-clock"></i> Recent Enrollments</h3>
+                    <div class="table-wrapper"><table class="data-table"><thead><tr><th>Enrollment ID</th><th>Student</th><th>Class Type</th><th>Status</th><th>Instructor</th><th>Updated</th></tr></thead><tbody>
+                        <tr><td>ENR-2026-001</td><td>John Carter</td><td>Artisan Baking</td><td><span class="badge badge-active">Confirmed</span></td><td>Chef Marco</td><td>2 hours ago</td></tr>
+                        <tr><td>ENR-2026-002</td><td>Sarah Williams</td><td>Thai Cuisine</td><td><span class="badge" style="background:#fff3e3;color:#b45309;">Pending</span></td><td>Chef Lin</td><td>Yesterday</td></tr>
+                        <tr><td>ENR-2026-003</td><td>Michael Chen</td><td>Indian Spices</td><td><span class="badge" style="background:#ffe4e2;color:#b91c1c;">Waitlisted</span></td><td>Chef Anand</td><td>3 days ago</td></tr>
+                    </tbody></table></div>
+                    <div style="margin-top:20px; font-size:13px;"><i class="fas fa-database"></i> Showing 3 of 18 total enrollments</div>
+                </div>
+                <div class="quick-actions"><h3><i class="fas fa-bolt"></i> Quick Actions</h3><div class="quick-grid">
+                    <div class="quick-btn" id="quickCaseBtn"><i class="fas fa-plus-circle"></i> Create Masterclass</div>
+                    <div class="quick-btn" id="quickClientBtn"><i class="fas fa-user-plus"></i> Add New Student</div>
+                    <div class="quick-btn" id="quickAssignBtn"><i class="fas fa-user-shield"></i> Assign Instructor</div>
+                    <div class="quick-btn" id="quickReportBtn"><i class="fas fa-chart-bar"></i> View Revenue</div>
+                </div></div>
+            </div>
+
+            <div id="classes-section" class="page-section"><div class="data-card"><h3><i class="fas fa-fire-burner"></i> All Masterclasses</h3><div class="table-wrapper"><table class="data-table"><thead><tr><th>Class ID</th><th>Topic</th><th>Category</th><th>Status</th><th>Capacity</th><th>Instructor</th></tr></thead><tbody>
+                <tr><td>CLS-2026-001</td><td>Sourdough Fundamentals</td><td>Baking</td><td><span class="badge badge-active">Open</span></td><td>8 / 12</td><td>Chef Marco</td></tr>
+                <tr><td>CLS-2026-002</td><td>Street Food of Bangkok</td><td>Asian</td><td><span class="badge" style="background:#ffe4e2;">Full</span></td><td>12 / 12</td><td>Chef Lin</td></tr>
+                <tr><td>CLS-2026-003</td><td>Royal Awadhi Biryani</td><td>Indian</td><td><span class="badge badge-active">Open</span></td><td>5 / 12</td><td>Chef Anand</td></tr>
+                <tr><td>CLS-2026-004</td><td>Pasta Making 101</td><td>Italian</td><td><span class="badge" style="background:#fff3e3;">Closing Soon</span></td><td>11 / 12</td><td>Chef Rossi</td></tr>
+            </tbody></table></div></div></div>
+
+            <div id="students-section" class="page-section"><div class="data-card"><h3><i class="fas fa-users"></i> Student Directory</h3><div class="table-wrapper"><table class="data-table"><thead><tr><th>Student Name</th><th>Email</th><th>Classes Taken</th><th>Status</th><th>Member Since</th></tr></thead><tbody>
+                <tr><td>John Carter</td><td>john.carter@email.com</td><td>4</td><td><span class="badge badge-active">Active</span></td><td>2024</td></tr>
+                <tr><td>Sarah Williams</td><td>sarah.w@email.com</td><td>1</td><td><span class="badge badge-active">Active</span></td><td>2025</td></tr>
+                <tr><td>Michael Chen</td><td>mchen@email.com</td><td>7</td><td><span class="badge badge-active">Active</span></td><td>2023</td></tr>
+            </tbody></table></div><div style="margin-top:28px;"><div class="quick-btn" id="addClientSectionBtn"><i class="fas fa-user-plus"></i> Register New Student</div></div></div></div>
+
+            <div id="chefs-section" class="page-section"><div class="data-card"><h3><i class="fas fa-pan-food"></i> Culinary Instructors</h3><div class="table-wrapper"><table class="data-table"><thead><tr><th>Name</th><th>Specialization</th><th>Active Classes</th><th>Status</th><th>Student Rating</th></tr></thead><tbody>
+                <tr><td>Chef Marco</td><td>Artisan Baking</td><td>2</td><td><span class="badge badge-active">Available</span></td><td>⭐ 4.9</td></tr>
+                <tr><td>Chef Lin</td><td>Pan-Asian Cuisine</td><td>3</td><td><span class="badge badge-active">Teaching</span></td><td>⭐ 4.8</td></tr>
+                <tr><td>Chef Anand</td><td>Indian & Spice Blends</td><td>2</td><td><span class="badge badge-active">Available</span></td><td>⭐ 4.9</td></tr>
+            </tbody></table></div></div></div>
+
+            <div id="reports-section" class="page-section"><div class="stats-grid" style="margin-bottom:28px;"><div class="stat-card"><div class="stat-title">Total Revenue</div><div class="stat-number">$45,200</div></div><div class="stat-card"><div class="stat-title">This Month</div><div class="stat-number">$8,450</div></div></div><div class="data-card"><h3><i class="fas fa-chart-line"></i> Recent Analytics Reports</h3><div class="table-wrapper"><table class="data-table"><thead><tr><th>Report Name</th><th>Type</th><th>Generated</th><th>Download</th></tr></thead><tbody>
+                <tr><td>Q1 Class Attendance</td><td>PDF</td><td>Apr 10, 2026</td><td><i class="fas fa-download" style="color:#D35400; cursor:pointer;"></i></td></tr>
+                <tr><td>Instructor Performance</td><td>Excel</td><td>Apr 05, 2026</td><td><i class="fas fa-download" style="color:#D35400; cursor:pointer;"></i></td></tr>
+            </tbody></table></div><div style="margin-top:28px;"><div class="quick-btn" id="genReportBtn"><i class="fas fa-chart-bar"></i> Generate New Report</div></div></div></div>
+
+            <div id="settings-section" class="page-section"><div class="data-card"><h3><i class="fas fa-cog"></i> System Preferences</h3><div style="margin-top:24px; display:flex; flex-direction:column; gap:24px;"><div><label style="display:flex; align-items:center; gap:12px;"><input type="checkbox"> Enable Two-Factor Authentication</label></div><div><label style="display:flex; align-items:center; gap:12px;"><input type="checkbox"> Email Notifications for New Bookings</label></div><div><button class="quick-btn" id="saveSettingsBtn" style="width:fit-content;">Save Settings</button></div></div></div></div>
+
+            <div class="main-footer"><div><i class="far fa-copyright"></i> CulinaryStudio · Secure Admin Panel</div><div><i class="fas fa-cloud-sun"></i> 28°C Sunny · <span id="liveClock"></span></div></div>
+        </main>
+    </div>
+
+    <script>
+        let isDark = localStorage.getItem('culinary_dark') === 'enabled';
+        let isRTL = localStorage.getItem('culinary_rtl') === 'enabled';
+
+        function applyDarkMode(enabled) {
+            if (enabled) {
+                document.body.classList.add('dark');
+                const darkBtn = document.getElementById('darkModeIcon');
+                if(darkBtn) darkBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                document.body.classList.remove('dark');
+                const darkBtn = document.getElementById('darkModeIcon');
+                if(darkBtn) darkBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+            localStorage.setItem('culinary_dark', enabled ? 'enabled' : 'disabled');
+        }
+        
+        function applyRTL(enabled) {
+            if (enabled) {
+                document.body.classList.add('rtl');
+                document.documentElement.setAttribute('dir', 'rtl');
+                document.getElementById('rtlToggleText').innerText = 'RTL';
+            } else {
+                document.body.classList.remove('rtl');
+                document.documentElement.setAttribute('dir', 'ltr');
+                document.getElementById('rtlToggleText').innerText = 'LTR';
+            }
+            localStorage.setItem('culinary_rtl', enabled ? 'enabled' : 'disabled');
+        }
+        
+        applyDarkMode(isDark);
+        applyRTL(isRTL);
+
+        document.getElementById('darkModeIcon').onclick = () => { 
+            isDark = !isDark; 
+            applyDarkMode(isDark); 
+            showToast(isDark ? "Dark mode enabled" : "Light mode enabled"); 
+        };
+        
+        const rtlBtn = document.getElementById('rtlToggleBtn');
+        rtlBtn.onclick = () => { 
+            isRTL = !isRTL; 
+            applyRTL(isRTL); 
+            showToast(isRTL ? "RTL (Right-to-Left) layout active" : "LTR (Left-to-Right) layout active"); 
+        };
+
+        function closeSidebar() { document.getElementById('mainSidebar')?.classList.remove('open'); document.getElementById('sidebarOverlay')?.classList.remove('active'); }
+        function openSidebar() { document.getElementById('mainSidebar')?.classList.add('open'); document.getElementById('sidebarOverlay')?.classList.add('active'); }
+        document.getElementById('hamburgerBtn')?.addEventListener('click', openSidebar);
+        document.getElementById('sidebarOverlay')?.addEventListener('click', closeSidebar);
+
+        function showToast(msg, icon = "info-circle") { const old = document.querySelector('.toast-msg'); if (old) old.remove(); const toast = document.createElement('div'); toast.className = 'toast-msg'; toast.innerHTML = `<i class="fas fa-${icon}" style="margin-right:8px;"></i> ${msg}`; document.body.appendChild(toast); setTimeout(() => toast.remove(), 2500); }
+
+        function showPage(pageId, pageTitle) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active-section'));
+            document.getElementById(`${pageId}-section`).classList.add('active-section');
+            const icons = { dashboard: 'tachometer-alt', classes: 'fire-burner', students: 'users', chefs: 'hat-chef', reports: 'chart-line', settings: 'cog' };
+            document.getElementById('pageHeading').innerHTML = `<i class="fas fa-${icons[pageId]}" style="color:var(--accent-color);"></i> ${pageTitle}`;
+            document.querySelectorAll('.nav-item').forEach(item => { item.classList.remove('active'); if (item.getAttribute('data-page') === pageId) item.classList.add('active'); });
+            if (window.innerWidth <= 900) closeSidebar();
+            showToast(`Switched to ${pageTitle}`, "check-circle");
+        }
+        document.querySelectorAll('.nav-item').forEach(btn => { btn.addEventListener('click', () => { const page = btn.getAttribute('data-page'); const titles = { dashboard: 'Dashboard', classes: 'Masterclasses', students: 'Enrolled Students', chefs: 'Instructors', reports: 'Revenue & Reports', settings: 'System Settings' }; showPage(page, titles[page]); }); });
+
+        document.getElementById('quickCaseBtn')?.addEventListener('click', () => showToast("New class creation form (demo)", "plus-circle"));
+        document.getElementById('quickClientBtn')?.addEventListener('click', () => showToast("Add new student dialog (demo)", "user-plus"));
+        document.getElementById('quickAssignBtn')?.addEventListener('click', () => showToast("Assign instructor wizard (demo)", "user-shield"));
+        document.getElementById('quickReportBtn')?.addEventListener('click', () => showToast("Generating revenue report...", "chart-bar"));
+        document.getElementById('addClientSectionBtn')?.addEventListener('click', () => showToast("Student registration demo", "user-plus"));
+        document.getElementById('genReportBtn')?.addEventListener('click', () => showToast("New analytics report generated", "file-pdf"));
+        document.getElementById('saveSettingsBtn')?.addEventListener('click', () => showToast("Settings saved (demo)", "check-circle"));
+        document.getElementById('sidebarLogoutBtn')?.addEventListener('click', () => { showToast("Logout simulation: session ended", "sign-out-alt"); setTimeout(() => window.location.href="login.html", 600); });
+
+        function updateClock() { const now = new Date(); const clockSpan = document.getElementById('liveClock'); if (clockSpan) clockSpan.innerText = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' }); }
+        setInterval(updateClock, 1000); updateClock();
+        window.addEventListener('resize', () => { if (window.innerWidth > 900) closeSidebar(); });
+        window.addEventListener('load', () => setTimeout(() => showToast("Welcome back, Master Chef", "check-circle"), 500));
+    </script>
+</body>
+</html>
