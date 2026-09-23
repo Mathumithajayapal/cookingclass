@@ -1,210 +1,520 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CulinaryStudio - Cooking Classes & Workshops</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23D35400' d='M416 0C400 0 288 32 288 176V288c0 35.3 28.7 64 64 64h32V480c0 17.7 14.3 32 32 32s32-14.3 32-32V352 176 64c0-35.3-28.7-64-64-64zM64 16C64 7.8 57.9 1 49.7 .1S34.2 4.6 32.4 12.5L2.1 148.8C.7 155.1 0 161.5 0 167.9c0 45.9 35.1 83.6 80 87.7V480c0 17.7 14.3 32 32 32s32-14.3 32-32V255.6c44.9-4.1 80-41.8 80-87.7c0-6.4-.7-12.8-2.1-19.1L191.6 12.5c-1.8-8-9.3-13.3-17.4-12.4S160 7.8 160 16V150.2c0 5.4-4.4 9.8-9.8 9.8c-5.1 0-9.3-3.9-9.8-9L127.9 14.6C127.2 6.3 120.3 0 112 0s-15.2 6.3-15.9 14.6L83.7 151c-.5 5.1-4.7 9-9.8 9c-5.4 0-9.8-4.4-9.8-9.8V16z'/></svg>" type="image/svg+xml">
-    
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path fill='%23D35400' d='M416 0C400 0 288 32 288 176V288c0 35.3 28.7 64 64 64h32V480c0 17.7 14.3 32 32 32s32-14.3 32-32V352 176 64c0-35.3-28.7-64-64-64zM64 16C64 7.8 57.9 1 49.7 .1S34.2 4.6 32.4 12.5L2.1 148.8C.7 155.1 0 161.5 0 167.9c0 45.9 35.1 83.6 80 87.7V480c0 17.7 14.3 32 32 32s32-14.3 32-32V255.6c44.9-4.1 80-41.8 80-87.7c0-6.4-.7-12.8-2.1-19.1L191.6 12.5c-1.8-8-9.3-13.3-17.4-12.4S160 7.8 160 16V150.2c0 5.4-4.4 9.8-9.8 9.8c-5.1 0-9.3-3.9-9.8-9L127.9 14.6C127.2 6.3 120.3 0 112 0s-15.2 6.3-15.9 14.6L83.7 151c-.5 5.1-4.7 9-9.8 9c-5.4 0-9.8-4.4-9.8-9.8V16z'/></svg>"
+        type="image/svg+xml">
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-    tailwind.config = {
-        theme: {
-        extend: {
-            fontFamily: {
-            serif: ['"Playfair Display"', 'serif'],
-            sans: ['"Lora"', 'serif'],
-            },
-            fontWeight: {
-            regular: '400',
-            medium: '500',
-            semibold: '600',
-            bold: '700',
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['"Playfair Display"', 'serif'],
+                        sans: ['"Lora"', 'serif'],
+                    },
+                    fontWeight: {
+                        regular: '400',
+                        medium: '500',
+                        semibold: '600',
+                        bold: '700',
+                    }
+                }
             }
         }
-        }
-    }
     </script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet">
+
     <style>
         /* === RESET & CORE === */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; overflow-x: hidden; }
-        
-        body { 
-            font-family: 'Lora', serif; 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Lora', serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             transition: background-color 0.4s ease, color 0.4s ease;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5, h6, .brand-logo {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        .brand-logo {
             font-family: 'Playfair Display', serif;
         }
 
         /* === THEME VARIABLES (Adapted for Culinary Theme) === */
         :root {
-            --bg-color: #FDFBF7; 
-            --bg-secondary: #F4F1EA; 
-            --bg-card: #FFFFFF; 
-            --bg-inverted: #2C2A28; 
-            --text-main: #2C2A28; 
+            --bg-color: #FDFBF7;
+            --bg-secondary: #F4F1EA;
+            --bg-card: #FFFFFF;
+            --bg-inverted: #2C2A28;
+            --text-main: #2C2A28;
             --text-muted: #6B655B;
-            --accent-color: #D35400; /* Warm culinary orange/copper */
-            --accent-dark: #A04000;  
+            --accent-color: #D35400;
+            /* Warm culinary orange/copper */
+            --accent-dark: #A04000;
             --border-color: #E6E2D8;
             --nav-bg: #FDFBF7;
             --drawer-bg: rgba(253, 251, 247, 0.98);
-            --menu-hover-bg: rgba(211, 84, 0, 0.08); 
+            --menu-hover-bg: rgba(211, 84, 0, 0.08);
         }
 
         /* DARK MODE */
         body.dark-mode {
-            --bg-color: #121212; 
-            --bg-secondary: #1A1A1A; 
-            --bg-card: #1E1E1E; 
-            --bg-inverted: #0A0A0A; 
-            --text-main: #EAE6DF; 
+            --bg-color: #121212;
+            --bg-secondary: #1A1A1A;
+            --bg-card: #1E1E1E;
+            --bg-inverted: #0A0A0A;
+            --text-main: #EAE6DF;
             --text-muted: #A39E93;
-            --accent-color: #E67E22; 
-            --accent-dark: #D35400; 
+            --accent-color: #E67E22;
+            --accent-dark: #D35400;
             --border-color: #333333;
             --nav-bg: #121212;
             --drawer-bg: rgba(18, 18, 18, 0.98);
-            --menu-hover-bg: rgba(230, 126, 34, 0.1); 
+            --menu-hover-bg: rgba(230, 126, 34, 0.1);
         }
 
         /* RTL SUPPORT */
-        [dir="rtl"] { text-align: right; }
-        [dir="rtl"] .ml-auto { margin-right: auto; margin-left: 0; }
-        [dir="rtl"] .mr-auto { margin-left: auto; margin-right: 0; }
+        [dir="rtl"] {
+            text-align: right;
+        }
+
+        [dir="rtl"] .ml-auto {
+            margin-right: auto;
+            margin-left: 0;
+        }
+
+        [dir="rtl"] .mr-auto {
+            margin-left: auto;
+            margin-right: 0;
+        }
 
         @keyframes subtleZoom {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.08); }
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.08);
+            }
         }
-        .animate-zoom { animation: subtleZoom 25s infinite alternate ease-in-out; }
+
+        .animate-zoom {
+            animation: subtleZoom 25s infinite alternate ease-in-out;
+        }
 
         /* === NAVBAR DESIGN === */
-        .navbar { 
-            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
-            background: var(--nav-bg); 
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--nav-bg);
             border-bottom: 1px solid var(--border-color);
-            padding: 0 32px; height: 90px; display: flex; align-items: center;
+            padding: 0 32px;
+            height: 90px;
+            display: flex;
+            align-items: center;
             transition: all 0.5s ease;
         }
 
-        .navbar.scrolled { 
+        .navbar.scrolled {
             height: 75px;
-            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05); 
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
             background: var(--drawer-bg);
             backdrop-filter: blur(10px);
         }
-        body.dark-mode .navbar.scrolled { box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8); }
-        
-        .nav-link { 
-            position: relative; padding: 10px 20px; margin: 0 4px; color: var(--text-main); 
-            text-decoration: none; font-size: 13px; font-weight: 500; text-transform: uppercase;
-            letter-spacing: 2px; transition: all 0.3s ease; display: inline-flex; 
-            align-items: center; justify-content: center; gap: 6px; cursor: pointer;
+
+        body.dark-mode .navbar.scrolled {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.8);
         }
-        
-        .nav-link::after { 
-            content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 1px;
-            background: var(--accent-color); transition: all 0.3s ease; transform: translateX(-50%);
+
+        .nav-link {
+            position: relative;
+            padding: 10px 20px;
+            margin: 0 4px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            cursor: pointer;
         }
-        .nav-link:hover::after, .nav-link.active::after { width: 60%; }
-        .nav-link:hover, .nav-link.active { color: var(--accent-color); }
-        
-        .dropdown { position: relative; display: flex; align-items: center; height: 100%; }
-        .dropdown-menu { position: absolute; top: 70px; left: 0; transform: translateY(15px); opacity: 0; visibility: hidden; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); z-index: 100; }
-        .navbar.scrolled .dropdown-menu { top: 60px; }
-        .dropdown-inner { 
-            background: var(--bg-card); border: 1px solid var(--border-color); 
-            min-width: 220px; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08); 
-            padding: 8px 0; display: flex; flex-direction: column; 
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 1px;
+            background: var(--accent-color);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
-        body.dark-mode .dropdown-inner { box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); }
-        .dropdown:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-        
-        .dropdown-item { 
-            display: block; padding: 12px 24px; color: var(--text-main); text-decoration: none; 
-            font-size: 12px; font-weight: 500; text-transform: uppercase; letter-spacing: 1.5px; 
-            transition: all 0.3s; text-align: left; white-space: nowrap; 
+
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 60%;
         }
-        .dropdown-item:hover { background: var(--menu-hover-bg); color: var(--accent-color); padding-left: 28px; }
-        [dir="rtl"] .dropdown-item:hover { padding-left: 24px; padding-right: 28px; }
+
+        .nav-link:hover,
+        .nav-link.active {
+            color: var(--accent-color);
+        }
+
+        .dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 70px;
+            left: 0;
+            transform: translateY(15px);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 100;
+        }
+
+        .navbar.scrolled .dropdown-menu {
+            top: 60px;
+        }
+
+        .dropdown-inner {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            min-width: 220px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            padding: 8px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        body.dark-mode .dropdown-inner {
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 12px 24px;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .dropdown-item:hover {
+            background: var(--menu-hover-bg);
+            color: var(--accent-color);
+            padding-left: 28px;
+        }
+
+        [dir="rtl"] .dropdown-item:hover {
+            padding-left: 24px;
+            padding-right: 28px;
+        }
 
         /* PILL TOGGLE */
-        .theme-toggle-pill { width: 52px; height: 28px; background: var(--bg-secondary); border-radius: 30px; position: relative; cursor: pointer; display: flex; align-items: center; justify-content: space-between; padding: 0 6px; border: 1px solid var(--border-color); }
-        .theme-toggle-pill i { font-size: 10px; z-index: 1; }
-        .theme-toggle-pill .fa-sun { color: #D35400; }
-        .theme-toggle-pill .fa-moon { color: #6B655B; }
-        .theme-toggle-pill .thumb { position: absolute; top: 2px; left: 2px; width: 22px; height: 22px; background: white; border-radius: 50%; transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); box-shadow: 0 2px 4px rgba(0,0,0,0.1); z-index: 2; border: 1px solid var(--border-color);}
-        body.dark-mode .theme-toggle-pill .thumb { transform: translateX(24px); background: #2A2A2A; border-color: var(--border-color); }
+        .theme-toggle-pill {
+            width: 52px;
+            height: 28px;
+            background: var(--bg-secondary);
+            border-radius: 30px;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6px;
+            border: 1px solid var(--border-color);
+        }
+
+        .theme-toggle-pill i {
+            font-size: 10px;
+            z-index: 1;
+        }
+
+        .theme-toggle-pill .fa-sun {
+            color: #D35400;
+        }
+
+        .theme-toggle-pill .fa-moon {
+            color: #6B655B;
+        }
+
+        .theme-toggle-pill .thumb {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 22px;
+            height: 22px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            border: 1px solid var(--border-color);
+        }
+
+        body.dark-mode .theme-toggle-pill .thumb {
+            transform: translateX(24px);
+            background: #2A2A2A;
+            border-color: var(--border-color);
+        }
 
         /* RTL BUTTON STYLE */
         .rtl-btn-style {
-            width: 44px; height: 28px; background: var(--bg-secondary); border-radius: 2px; border: 1px solid var(--border-color);
-            display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 600; cursor: pointer;
-            color: var(--text-main); transition: all 0.3s ease; font-family: 'Lora', serif;
+            width: 44px;
+            height: 28px;
+            background: var(--bg-secondary);
+            border-radius: 2px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: all 0.3s ease;
+            font-family: 'Lora', serif;
         }
-        .rtl-btn-style:hover { background: var(--accent-color); color: #fff; border-color: var(--accent-color); }
+
+        .rtl-btn-style:hover {
+            background: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+        }
 
         /* === BUTTON DESIGN === */
-        .btn { 
-            padding: 14px 32px; font-weight: 500; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; 
-            transition: all 0.4s ease; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; 
-            border: 1px solid transparent; font-family: 'Lora', serif;
+        .btn {
+            padding: 14px 32px;
+            font-weight: 500;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border: 1px solid transparent;
+            font-family: 'Lora', serif;
         }
-        .btn-solid { background: var(--accent-color); color: #FFFFFF !important; }
-        .btn-solid:hover { background: var(--accent-dark); }
-        .btn-outline { background: transparent; border: 1px solid var(--border-color); color: var(--text-main); }
-        .btn-outline:hover { border-color: var(--accent-color); color: var(--accent-color) !important; }
+
+        .btn-solid {
+            background: var(--accent-color);
+            color: #FFFFFF !important;
+        }
+
+        .btn-solid:hover {
+            background: var(--accent-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent-color);
+            color: var(--accent-color) !important;
+        }
 
         /* MOBILE OVERLAY & DRAWER */
-        .drawer-overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.7); z-index: 999; opacity: 0; visibility: hidden; transition: all 0.4s ease; backdrop-filter: blur(5px); }
-        .drawer-overlay.active { opacity: 1; visibility: visible; }
-
-        .fullscreen-menu { 
-            position: fixed; top: 0; right: 0; width: 100%; max-width: 420px; height: 100dvh; background: var(--drawer-bg); z-index: 1001; display: flex; flex-direction: column; 
-            opacity: 0; visibility: hidden; transform: translateX(100%); transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1); border-left: 1px solid var(--border-color);
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            backdrop-filter: blur(5px);
         }
-        [dir="rtl"] .fullscreen-menu { right: auto; left: 0; transform: translateX(-100%); border-left: none; border-right: 1px solid var(--border-color); }
-        .fullscreen-menu.active { opacity: 1; visibility: visible; transform: translateX(0); }
-        
-        .mobile-link { display: block; width: 100%; padding: 18px 32px; font-size: 1rem; font-family: 'Playfair Display', serif; font-style: italic; color: var(--text-main); text-decoration: none; transition: all 0.3s; border-bottom: 1px solid var(--border-color); }
-        .mobile-link:hover { color: var(--accent-color); padding-left: 40px; background: var(--menu-hover-bg); }
-        [dir="rtl"] .mobile-link:hover { padding-left: 32px; padding-right: 40px; }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .fullscreen-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 420px;
+            height: 100dvh;
+            background: var(--drawer-bg);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(100%);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border-left: 1px solid var(--border-color);
+        }
+
+        [dir="rtl"] .fullscreen-menu {
+            right: auto;
+            left: 0;
+            transform: translateX(-100%);
+            border-left: none;
+            border-right: 1px solid var(--border-color);
+        }
+
+        .fullscreen-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .mobile-link {
+            display: block;
+            width: 100%;
+            padding: 18px 32px;
+            font-size: 1rem;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--text-main);
+            text-decoration: none;
+            transition: all 0.3s;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .mobile-link:hover {
+            color: var(--accent-color);
+            padding-left: 40px;
+            background: var(--menu-hover-bg);
+        }
+
+        [dir="rtl"] .mobile-link:hover {
+            padding-left: 32px;
+            padding-right: 40px;
+        }
 
         /* FOOTER */
-        footer { background: var(--bg-secondary); border-top: 1px solid var(--border-color); padding-top: 80px; }
-        footer h4 { color: var(--text-main); font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 24px; letter-spacing: 1px; } 
-        footer a, footer li, footer span { color: var(--text-muted); text-decoration: none; transition: all 0.3s; font-size: 0.95rem; }
-        footer a:hover { color: var(--accent-color); }
-        .social-link-circle { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; transition: all 0.3s; color: var(--text-main); background: transparent; }
-        .social-link-circle:hover { background: var(--accent-color); border-color: var(--accent-color); color: #FFFFFF; }
-        .footer-bottom { border-top: 1px solid var(--border-color); padding: 32px 0; margin-top: 60px; }
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding-top: 80px;
+        }
+
+        footer h4 {
+            color: var(--text-main);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            margin-bottom: 24px;
+            letter-spacing: 1px;
+        }
+
+        footer a,
+        footer li,
+        footer span {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+
+        footer a:hover {
+            color: var(--accent-color);
+        }
+
+        .social-link-circle {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: var(--text-main);
+            background: transparent;
+        }
+
+        .social-link-circle:hover {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: #FFFFFF;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding: 32px 0;
+            margin-top: 60px;
+        }
     </style>
 </head>
+
 <body>
 
     <!-- NAVBAR COMPONENT -->
     <nav class="navbar" id="main-nav">
         <div class="w-full flex items-center justify-between max-w-[1440px] mx-auto">
             <div class="flex items-center">
-                <a href="index.html" class="text-2xl brand-logo tracking-widest uppercase flex items-center whitespace-nowrap" style="color: var(--text-main) !important; text-decoration: none;">
-                    <i class="fas fa-utensils" style="color: var(--accent-color); margin-right: 0.45em; font-size: 0.9em; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(211,84,0,0.35));"></i>CulinaryStudio
+                <a href="index.html"
+                    class="text-2xl brand-logo tracking-widest uppercase flex items-center whitespace-nowrap"
+                    style="color: var(--text-main) !important; text-decoration: none;">
+                    <i class="fas fa-utensils"
+                        style="color: var(--accent-color); margin-right: 0.45em; font-size: 0.9em; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(211,84,0,0.35));"></i>CulinaryStudio
                 </a>
             </div>
-            
+
             <div class="hidden xl:flex justify-center items-center flex-1">
                 <div class="dropdown">
                     <!-- Adjusted active class to Home for the index page -->
-                    <div class="nav-link active">Home <i class="fas fa-chevron-down text-[9px] ml-2 opacity-60"></i></div>
+                    <div class="nav-link active">Home <i class="fas fa-chevron-down text-[9px] ml-2 opacity-60"></i>
+                    </div>
                     <div class="dropdown-menu">
                         <div class="dropdown-inner">
                             <a href="index.html" class="dropdown-item">Home Page 1</a>
@@ -231,7 +541,8 @@
 
             <div class="hidden xl:flex items-center gap-5">
                 <div id="theme-toggle-desktop" class="theme-toggle-pill" title="Toggle Dark Mode">
-                    <i class="fas fa-sun"></i><i class="fas fa-moon"></i><div class="thumb"></div>
+                    <i class="fas fa-sun"></i><i class="fas fa-moon"></i>
+                    <div class="thumb"></div>
                 </div>
                 <button id="rtl-btn" class="rtl-btn-style" title="Toggle LTR/RTL">LTR</button>
                 <div class="w-px h-6 bg-[var(--border-color)] mx-1"></div>
@@ -239,7 +550,8 @@
             </div>
 
             <div class="xl:hidden flex items-center justify-end gap-4">
-                <button id="mobile-btn" class="text-2xl text-[var(--text-main)] transition-colors hover:text-[var(--accent-color)]">
+                <button id="mobile-btn"
+                    class="text-2xl text-[var(--text-main)] transition-colors hover:text-[var(--accent-color)]">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -251,14 +563,18 @@
 
     <div class="fullscreen-menu" id="fullscreen-menu">
         <div class="w-full px-8 py-8 flex justify-between items-center shrink-0 border-b border-[var(--border-color)]">
-            <a href="index.html" class="text-2xl brand-logo tracking-widest uppercase flex items-center whitespace-nowrap" style="color: var(--text-main) !important; text-decoration: none;">
-                    <i class="fas fa-utensils" style="color: var(--accent-color); margin-right: 0.45em; font-size: 0.9em; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(211,84,0,0.35));"></i>CulinaryStudio
+            <a href="index.html"
+                class="text-2xl brand-logo tracking-widest uppercase flex items-center whitespace-nowrap"
+                style="color: var(--text-main) !important; text-decoration: none;">
+                <i class="fas fa-utensils"
+                    style="color: var(--accent-color); margin-right: 0.45em; font-size: 0.9em; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(211,84,0,0.35));"></i>CulinaryStudio
             </a>
-            <button id="close-menu" class="w-10 h-10 flex items-center justify-center transition-all text-2xl text-[var(--text-main)] hover:text-[var(--accent-color)]">
+            <button id="close-menu"
+                class="w-10 h-10 flex items-center justify-center transition-all text-2xl text-[var(--text-main)] hover:text-[var(--accent-color)]">
                 <i class="fas fa-times"></i>
             </button>
         </div>
-        
+
         <div class="flex flex-col w-full overflow-y-auto flex-1 py-4">
             <!-- Adjusted active class to Home Page 1 -->
             <a href="index.html" class="mobile-link" style="color: var(--accent-color);">Home Page 1</a>
@@ -269,7 +585,7 @@
             <a href="blog.html" class="mobile-link">Blog</a>
             <a href="faq.html" class="mobile-link">FAQ</a>
             <a href="contact.html" class="mobile-link">Contact</a>
-            
+
             <div class="px-8 mt-8 mb-2">
                 <span class="text-[10px] font-bold text-[var(--accent-color)] uppercase tracking-widest">Portals</span>
             </div>
@@ -277,11 +593,16 @@
             <a href="admin.html" class="mobile-link !text-sm text-[var(--text-muted)] !not-italic">Admin Dashboard</a>
         </div>
 
-        <div class="w-full px-8 py-8 border-t border-[var(--border-color)] flex flex-col gap-6 shrink-0 bg-[var(--bg-secondary)]">
+        <div
+            class="w-full px-8 py-8 border-t border-[var(--border-color)] flex flex-col gap-6 shrink-0 bg-[var(--bg-secondary)]">
             <div class="flex justify-between items-center w-full">
                 <div class="flex items-center gap-3">
-                    <span class="text-[var(--text-muted)] font-medium text-[10px] uppercase tracking-widest">Theme</span>
-                    <div id="theme-toggle-mobile" class="theme-toggle-pill"><i class="fas fa-sun"></i><i class="fas fa-moon"></i><div class="thumb"></div></div>
+                    <span
+                        class="text-[var(--text-muted)] font-medium text-[10px] uppercase tracking-widest">Theme</span>
+                    <div id="theme-toggle-mobile" class="theme-toggle-pill"><i class="fas fa-sun"></i><i
+                            class="fas fa-moon"></i>
+                        <div class="thumb"></div>
+                    </div>
                 </div>
                 <div class="flex items-center gap-3">
                     <span class="text-[var(--text-muted)] font-medium text-[10px] uppercase tracking-widest">Dir</span>
@@ -290,38 +611,42 @@
             </div>
             <div class="flex gap-4 w-full">
                 <a href="login.html" class="btn btn-outline flex-1 !py-3">Login</a>
-                <a href="register.html" class="btn btn-solid flex-1 !py-3">Register</a>
             </div>
         </div>
     </div>
 
     <!-- HERO BANNER COMPONENT -->
-    <section class="relative w-full h-[100dvh] pt-20 flex items-center justify-center overflow-hidden border-b border-[var(--border-color)]">
+    <section
+        class="relative w-full h-[100dvh] pt-20 flex items-center justify-center overflow-hidden border-b border-[var(--border-color)]">
         <div class="absolute inset-0 z-0 bg-black">
             <!-- Home Page culinary image -->
-            <img src="images/cookingclass (2).jpg" alt="Culinary Workshop" class="w-full h-full object-cover animate-zoom opacity-50" />
+            <img src="images/cookingclass (2).jpg" alt="Culinary Workshop"
+                class="w-full h-full object-cover animate-zoom opacity-50" />
             <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[var(--bg-color)]"></div>
         </div>
 
-        <div class="max-w-[1000px] mx-auto px-6 w-full flex flex-col items-center justify-center text-center relative z-10 mt-12">
+        <div
+            class="max-w-[1000px] mx-auto px-6 w-full flex flex-col items-center justify-center text-center relative z-10 mt-12">
             <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-[0.3em] mb-6">
                 <i class="fas fa-star mr-2 text-[10px]"></i> Master Chefs & Culinary Experts
             </span>
-            
+
             <h1 class="text-5xl md:text-7xl lg:text-8xl font-regular leading-tight mb-8 text-white">
                 Mastering <br class="hidden sm:block">
                 <span class="italic text-[var(--accent-color)]">Flavor</span> & Technique.
             </h1>
-            
+
             <p class="text-gray-300 text-lg md:text-xl leading-relaxed max-w-2xl font-light mb-12 drop-shadow-md">
-                Immersive cooking classes, private workshops, and epicurean experiences designed to elevate your culinary skills from fundamental to extraordinary.
+                Immersive cooking classes, private workshops, and epicurean experiences designed to elevate your
+                culinary skills from fundamental to extraordinary.
             </p>
-            
+
             <div class="flex flex-col sm:flex-row justify-center gap-6 w-full sm:w-auto">
                 <a href="services.html" class="btn btn-solid !py-4 !px-12">
                     Explore Classes
                 </a>
-                <a href="contact.html" class="btn btn-outline !bg-white/90 backdrop-blur-sm !border-white !text-black hover:!bg-white shadow-lg !py-4 !px-12">
+                <a href="contact.html"
+                    class="btn btn-outline !bg-white/90 backdrop-blur-sm !border-white !text-black hover:!bg-white shadow-lg !py-4 !px-12">
                     Book a Workshop
                 </a>
             </div>
@@ -330,66 +655,87 @@
 
     <!-- MAIN CONTENT AREA WITH 5 NEW HOME SECTIONS -->
     <main class="w-full bg-[var(--bg-color)]">
-        
+
         <!-- SECTION 1: UPCOMING MASTERCLASSES (Tying into Dashboard Categories) -->
         <section class="py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
                     <div class="max-w-2xl">
-                        <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">Schedule</span>
-                        <h2 class="text-4xl md:text-5xl font-serif text-[var(--text-main)]">Upcoming <span class="italic text-[var(--text-muted)]">Masterclasses</span></h2>
+                        <span
+                            class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">Schedule</span>
+                        <h2 class="text-4xl md:text-5xl font-serif text-[var(--text-main)]">Upcoming <span
+                                class="italic text-[var(--text-muted)]">Masterclasses</span></h2>
                     </div>
-                    <a href="services.html" class="text-sm font-semibold uppercase tracking-widest text-[var(--text-main)] hover:text-[var(--accent-color)] transition-colors border-b border-[var(--text-main)] hover:border-[var(--accent-color)] pb-1">
+                    <a href="services.html"
+                        class="text-sm font-semibold uppercase tracking-widest text-[var(--text-main)] hover:text-[var(--accent-color)] transition-colors border-b border-[var(--text-main)] hover:border-[var(--accent-color)] pb-1">
                         View Full Schedule <i class="fas fa-arrow-right ml-2 text-xs"></i>
                     </a>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <!-- Class 1: Indian Cuisine -->
-                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] hover:shadow-xl transition-shadow group flex flex-col h-full">
+                    <div
+                        class="bg-[var(--bg-card)] border border-[var(--border-color)] hover:shadow-xl transition-shadow group flex flex-col h-full">
                         <div class="h-56 overflow-hidden relative">
-                            <span class="absolute top-4 left-4 bg-[var(--bg-card)] text-[var(--text-main)] text-[10px] font-bold uppercase tracking-widest py-1 px-3 z-10 border border-[var(--border-color)]">Intermediate</span>
-                            <img src="images/cookingclass (3).jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Indian Spices">
+                            <span
+                                class="absolute top-4 left-4 bg-[var(--bg-card)] text-[var(--text-main)] text-[10px] font-bold uppercase tracking-widest py-1 px-3 z-10 border border-[var(--border-color)]">Intermediate</span>
+                            <img src="images/cookingclass (3).jpg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                alt="Indian Spices">
                         </div>
                         <div class="p-8 flex flex-col flex-1">
-                            <div class="flex justify-between text-xs text-[var(--accent-color)] uppercase tracking-wider font-semibold mb-3">
+                            <div
+                                class="flex justify-between text-xs text-[var(--accent-color)] uppercase tracking-wider font-semibold mb-3">
                                 <span>Indian Cuisine</span>
                                 <span>Oct 12, 10:00 AM</span>
                             </div>
                             <h3 class="text-2xl font-serif text-[var(--text-main)] mb-3">Royal Awadhi Biryani</h3>
-                            <p class="text-sm text-[var(--text-muted)] mb-6 flex-1">Master the complex layering, slow 'dum' cooking technique, and spice blending for authentic Indian Biryani.</p>
+                            <p class="text-sm text-[var(--text-muted)] mb-6 flex-1">Master the complex layering, slow
+                                'dum' cooking technique, and spice blending for authentic Indian Biryani.</p>
                             <a href="login.html" class="btn btn-outline w-full !py-3">Book via Portal</a>
                         </div>
                     </div>
                     <!-- Class 2: Continental / Baking -->
-                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] hover:shadow-xl transition-shadow group flex flex-col h-full">
+                    <div
+                        class="bg-[var(--bg-card)] border border-[var(--border-color)] hover:shadow-xl transition-shadow group flex flex-col h-full">
                         <div class="h-56 overflow-hidden relative">
-                            <span class="absolute top-4 left-4 bg-[var(--bg-card)] text-[var(--text-main)] text-[10px] font-bold uppercase tracking-widest py-1 px-3 z-10 border border-[var(--border-color)]">Beginner</span>
-                            <img src="images/cookingclass (10).jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Artisan Bread">
+                            <span
+                                class="absolute top-4 left-4 bg-[var(--bg-card)] text-[var(--text-main)] text-[10px] font-bold uppercase tracking-widest py-1 px-3 z-10 border border-[var(--border-color)]">Beginner</span>
+                            <img src="images/cookingclass (10).jpg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                alt="Artisan Bread">
                         </div>
                         <div class="p-8 flex flex-col flex-1">
-                            <div class="flex justify-between text-xs text-[var(--accent-color)] uppercase tracking-wider font-semibold mb-3">
+                            <div
+                                class="flex justify-between text-xs text-[var(--accent-color)] uppercase tracking-wider font-semibold mb-3">
                                 <span>Artisan Baking</span>
                                 <span>Oct 15, 2:00 PM</span>
                             </div>
                             <h3 class="text-2xl font-serif text-[var(--text-main)] mb-3">Sourdough Fundamentals</h3>
-                            <p class="text-sm text-[var(--text-muted)] mb-6 flex-1">Understand wild yeast starters, hydration levels, and scoring techniques for the perfect crusty loaf.</p>
+                            <p class="text-sm text-[var(--text-muted)] mb-6 flex-1">Understand wild yeast starters,
+                                hydration levels, and scoring techniques for the perfect crusty loaf.</p>
                             <a href="login.html" class="btn btn-outline w-full !py-3">Book via Portal</a>
                         </div>
                     </div>
                     <!-- Class 3: Thai Cuisine -->
-                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] hover:shadow-xl transition-shadow group flex flex-col h-full">
+                    <div
+                        class="bg-[var(--bg-card)] border border-[var(--border-color)] hover:shadow-xl transition-shadow group flex flex-col h-full">
                         <div class="h-56 overflow-hidden relative">
-                            <span class="absolute top-4 left-4 bg-[var(--bg-inverted)] text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 z-10 border border-[var(--border-color)]">Advanced</span>
-                            <img src="images/cookingclass (12).jpg" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Thai Food">
+                            <span
+                                class="absolute top-4 left-4 bg-[var(--bg-inverted)] text-white text-[10px] font-bold uppercase tracking-widest py-1 px-3 z-10 border border-[var(--border-color)]">Advanced</span>
+                            <img src="images/cookingclass (12).jpg"
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                alt="Thai Food">
                         </div>
                         <div class="p-8 flex flex-col flex-1">
-                            <div class="flex justify-between text-xs text-[var(--accent-color)] uppercase tracking-wider font-semibold mb-3">
+                            <div
+                                class="flex justify-between text-xs text-[var(--accent-color)] uppercase tracking-wider font-semibold mb-3">
                                 <span>Thai Cuisine</span>
                                 <span>Oct 18, 6:00 PM</span>
                             </div>
                             <h3 class="text-2xl font-serif text-[var(--text-main)] mb-3">Street Food of Bangkok</h3>
-                            <p class="text-sm text-[var(--text-muted)] mb-6 flex-1">Intensive wok-skills workshop focusing on balancing sweet, sour, salty, and spicy flavor profiles.</p>
+                            <p class="text-sm text-[var(--text-muted)] mb-6 flex-1">Intensive wok-skills workshop
+                                focusing on balancing sweet, sour, salty, and spicy flavor profiles.</p>
                             <a href="login.html" class="btn btn-outline w-full !py-3">Book via Portal</a>
                         </div>
                     </div>
@@ -400,40 +746,49 @@
         <!-- SECTION 2: WHY CHOOSE CULINARYSTUDIO -->
         <section class="py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12 text-center">
-                <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">The Experience</span>
+                <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">The
+                    Experience</span>
                 <h2 class="text-4xl font-serif text-[var(--text-main)] mb-16">More Than Just a Recipe</h2>
-                
+
                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 text-center max-w-6xl mx-auto">
                     <div class="flex flex-col items-center group">
-                        <div class="w-20 h-20 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-2xl text-[var(--text-main)] mb-6 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+                        <div
+                            class="w-20 h-20 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-2xl text-[var(--text-main)] mb-6 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
                             <i class="fas fa-users"></i>
                         </div>
                         <h4 class="font-serif text-xl text-[var(--text-main)] mb-3">Intimate Batches</h4>
-                        <p class="text-sm text-[var(--text-muted)] leading-relaxed">Classes are strictly capped at 12 students to ensure personalized attention from our master chefs.</p>
+                        <p class="text-sm text-[var(--text-muted)] leading-relaxed">Classes are strictly capped at 12
+                            students to ensure personalized attention from our master chefs.</p>
                     </div>
-                    
+
                     <div class="flex flex-col items-center group">
-                        <div class="w-20 h-20 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-2xl text-[var(--text-main)] mb-6 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+                        <div
+                            class="w-20 h-20 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-2xl text-[var(--text-main)] mb-6 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
                             <i class="fas fa-utensils"></i>
                         </div>
                         <h4 class="font-serif text-xl text-[var(--text-main)] mb-3">Hands-on Cooking</h4>
-                        <p class="text-sm text-[var(--text-muted)] leading-relaxed">No observing from a distance. You chop, sauté, and plate everything at your own pro-grade workstation.</p>
+                        <p class="text-sm text-[var(--text-muted)] leading-relaxed">No observing from a distance. You
+                            chop, sauté, and plate everything at your own pro-grade workstation.</p>
                     </div>
-                    
+
                     <div class="flex flex-col items-center group">
-                        <div class="w-20 h-20 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-2xl text-[var(--text-main)] mb-6 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+                        <div
+                            class="w-20 h-20 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-2xl text-[var(--text-main)] mb-6 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
                             <i class="fas fa-file-pdf"></i>
                         </div>
                         <h4 class="font-serif text-xl text-[var(--text-main)] mb-3">Post-Class Materials</h4>
-                        <p class="text-sm text-[var(--text-muted)] leading-relaxed">Access recipe PDFs, chef prep notes, and technique videos directly from your Student Dashboard.</p>
+                        <p class="text-sm text-[var(--text-muted)] leading-relaxed">Access recipe PDFs, chef prep notes,
+                            and technique videos directly from your Student Dashboard.</p>
                     </div>
-                    
+
                     <div class="flex flex-col items-center group">
-                        <div class="w-20 h-20 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-2xl text-[var(--text-main)] mb-6 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
+                        <div
+                            class="w-20 h-20 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-2xl text-[var(--text-main)] mb-6 group-hover:bg-[var(--accent-color)] group-hover:text-white transition-colors">
                             <i class="fas fa-award"></i>
                         </div>
                         <h4 class="font-serif text-xl text-[var(--text-main)] mb-3">Expert Guidance</h4>
-                        <p class="text-sm text-[var(--text-muted)] leading-relaxed">Learn directly from industry veterans, ensuring you understand the science behind every culinary technique.</p>
+                        <p class="text-sm text-[var(--text-muted)] leading-relaxed">Learn directly from industry
+                            veterans, ensuring you understand the science behind every culinary technique.</p>
                     </div>
                 </div>
             </div>
@@ -443,30 +798,45 @@
         <section class="py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)] relative overflow-hidden">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <!-- Large Video/Image Poster -->
-                <div class="relative h-[400px] lg:h-[550px] w-full rounded-sm overflow-hidden group cursor-pointer shadow-2xl border border-[var(--border-color)]">
-                    <img src="images/cookingclass (4).jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Inside the Studio">
+                <div
+                    class="relative h-[400px] lg:h-[550px] w-full rounded-sm overflow-hidden group cursor-pointer shadow-2xl border border-[var(--border-color)]">
+                    <img src="images/cookingclass (4).jpg"
+                        class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                        alt="Inside the Studio">
                     <div class="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors"></div>
                     <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/40 text-white text-3xl group-hover:scale-110 transition-transform">
+                        <div
+                            class="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/40 text-white text-3xl group-hover:scale-110 transition-transform">
                             <i class="fas fa-play ml-1"></i>
                         </div>
                     </div>
                 </div>
                 <!-- Content / Info -->
                 <div>
-                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">Take a Tour</span>
-                    <h2 class="text-4xl md:text-5xl font-serif text-[var(--text-main)] mb-8">Inside Our <span class="italic text-[var(--text-muted)]">Kitchen Studio</span></h2>
+                    <span
+                        class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">Take
+                        a Tour</span>
+                    <h2 class="text-4xl md:text-5xl font-serif text-[var(--text-main)] mb-8">Inside Our <span
+                            class="italic text-[var(--text-muted)]">Kitchen Studio</span></h2>
                     <p class="text-[var(--text-muted)] text-lg leading-relaxed mb-8">
-                        Situated in the heart of the culinary district, our 4,000 sq ft facility is designed to inspire. Every student gets a dedicated station equipped with premium Japanese knives, induction cooktops, and fresh farm-to-table ingredients.
+                        Situated in the heart of the culinary district, our 4,000 sq ft facility is designed to inspire.
+                        Every student gets a dedicated station equipped with premium Japanese knives, induction
+                        cooktops, and fresh farm-to-table ingredients.
                     </p>
-                    
+
                     <div class="bg-[var(--bg-card)] p-8 border border-[var(--border-color)] shadow-sm mb-8">
-                        <h4 class="font-serif text-xl text-[var(--text-main)] mb-4 border-b border-[var(--border-color)] pb-2"><i class="fas fa-map-marker-alt text-[var(--accent-color)] mr-2"></i> Studio Details</h4>
-                        <p class="text-sm text-[var(--text-muted)] mb-2"><strong>Address:</strong> 45 Rue de la Cuisine, Culinary District, 75001</p>
-                        <p class="text-sm text-[var(--text-muted)] mb-2"><strong>What to bring:</strong> Comfortable closed-toe shoes and hair ties. We provide custom aprons, ingredients, and recipe binders.</p>
-                        <p class="text-sm text-[var(--text-muted)]"><strong>Confirmation:</strong> Full details and maps are sent to your dashboard upon booking.</p>
+                        <h4
+                            class="font-serif text-xl text-[var(--text-main)] mb-4 border-b border-[var(--border-color)] pb-2">
+                            <i class="fas fa-map-marker-alt text-[var(--accent-color)] mr-2"></i> Studio Details</h4>
+                        <p class="text-sm text-[var(--text-muted)] mb-2"><strong>Address:</strong> 45 Rue de la Cuisine,
+                            Culinary District, 75001</p>
+                        <p class="text-sm text-[var(--text-muted)] mb-2"><strong>What to bring:</strong> Comfortable
+                            closed-toe shoes and hair ties. We provide custom aprons, ingredients, and recipe binders.
+                        </p>
+                        <p class="text-sm text-[var(--text-muted)]"><strong>Confirmation:</strong> Full details and maps
+                            are sent to your dashboard upon booking.</p>
                     </div>
-                    
+
                     <a href="about.html" class="btn btn-solid">Read Our Full Story</a>
                 </div>
             </div>
@@ -476,28 +846,43 @@
         <section class="py-24 bg-[var(--bg-color)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12">
                 <div class="text-center max-w-3xl mx-auto mb-16">
-                    <span class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">Our Community</span>
-                    <h2 class="text-4xl font-serif text-[var(--text-main)] mb-6">Student <span class="italic text-[var(--text-muted)]">Creations</span></h2>
-                    <p class="text-[var(--text-muted)] text-base">From perfect macarons to hand-rolled sushi, take a look at the stunning dishes our students have plated right here in the studio.</p>
+                    <span
+                        class="text-[var(--accent-color)] text-xs font-semibold uppercase tracking-[0.2em] mb-4 block">Our
+                        Community</span>
+                    <h2 class="text-4xl font-serif text-[var(--text-main)] mb-6">Student <span
+                            class="italic text-[var(--text-muted)]">Creations</span></h2>
+                    <p class="text-[var(--text-muted)] text-base">From perfect macarons to hand-rolled sushi, take a
+                        look at the stunning dishes our students have plated right here in the studio.</p>
                 </div>
 
                 <!-- Gallery Grid -->
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
-                    <div class="col-span-2 row-span-2 relative group overflow-hidden border border-[var(--border-color)]">
-                        <img src="images/cookingclass (11).jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Student Sushi Plate">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                    <div
+                        class="col-span-2 row-span-2 relative group overflow-hidden border border-[var(--border-color)]">
+                        <img src="images/cookingclass (11).jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            alt="Student Sushi Plate">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                             <span class="text-white font-serif text-xl">Advanced Japanese Class</span>
                         </div>
                     </div>
                     <div class="relative group overflow-hidden border border-[var(--border-color)]">
-                        <img src="images/cookingclass (12).jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Thai Curry">
+                        <img src="images/cookingclass (12).jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            alt="Thai Curry">
                     </div>
                     <div class="relative group overflow-hidden border border-[var(--border-color)]">
-                        <img src="images/cookingclass (3).jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Indian Spices">
+                        <img src="images/cookingclass (3).jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            alt="Indian Spices">
                     </div>
                     <div class="col-span-2 relative group overflow-hidden border border-[var(--border-color)]">
-                        <img src="images/cookingclass (4).jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" alt="Pasta Making">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+                        <img src="images/cookingclass (4).jpg"
+                            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            alt="Pasta Making">
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
                             <span class="text-white font-serif text-xl">Italian Pasta Workshop</span>
                         </div>
                     </div>
@@ -509,23 +894,32 @@
         <section class="py-24 bg-[var(--bg-secondary)] border-b border-[var(--border-color)]">
             <div class="max-w-[1440px] mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-10">
                 <!-- Gift Vouchers Card -->
-                <div class="bg-[var(--bg-card)] border border-[var(--border-color)] p-12 flex flex-col items-center text-center shadow-md relative overflow-hidden group">
-                    <i class="fas fa-gift text-6xl text-[var(--accent-color)]/10 absolute -top-4 -right-4 group-hover:scale-110 transition-transform duration-500"></i>
+                <div
+                    class="bg-[var(--bg-card)] border border-[var(--border-color)] p-12 flex flex-col items-center text-center shadow-md relative overflow-hidden group">
+                    <i
+                        class="fas fa-gift text-6xl text-[var(--accent-color)]/10 absolute -top-4 -right-4 group-hover:scale-110 transition-transform duration-500"></i>
                     <h3 class="text-3xl font-serif text-[var(--text-main)] mb-4 relative z-10">Gift an Experience</h3>
                     <p class="text-[var(--text-muted)] mb-8 max-w-md relative z-10">
-                        Give the gift of culinary mastery. Perfect for birthdays, anniversaries, or the foodie in your life. Vouchers can be redeemed via the student portal for any class matching the cuisine and level they love.
+                        Give the gift of culinary mastery. Perfect for birthdays, anniversaries, or the foodie in your
+                        life. Vouchers can be redeemed via the student portal for any class matching the cuisine and
+                        level they love.
                     </p>
                     <a href="gift-vouchers.html" class="btn btn-outline relative z-10">Purchase a Voucher</a>
                 </div>
-                
+
                 <!-- Corporate Events Card -->
-                <div class="bg-[var(--bg-inverted)] border border-[var(--border-color)] p-12 flex flex-col items-center text-center shadow-md relative overflow-hidden group">
-                    <i class="fas fa-briefcase text-6xl text-white/5 absolute -bottom-4 -left-4 group-hover:scale-110 transition-transform duration-500"></i>
+                <div
+                    class="bg-[var(--bg-inverted)] border border-[var(--border-color)] p-12 flex flex-col items-center text-center shadow-md relative overflow-hidden group">
+                    <i
+                        class="fas fa-briefcase text-6xl text-white/5 absolute -bottom-4 -left-4 group-hover:scale-110 transition-transform duration-500"></i>
                     <h3 class="text-3xl font-serif text-white mb-4 relative z-10">Corporate Team Building</h3>
                     <p class="text-gray-400 mb-8 max-w-md relative z-10">
-                        Swap the boardroom for the cutting board. Our private culinary events foster teamwork, communication, and delicious results. We handle the ingredients, aprons, and wine pairings.
+                        Swap the boardroom for the cutting board. Our private culinary events foster teamwork,
+                        communication, and delicious results. We handle the ingredients, aprons, and wine pairings.
                     </p>
-                    <a href="corporate.html" class="btn btn-solid relative z-10 !bg-white !text-black hover:!bg-[var(--accent-color)] hover:!text-white">Plan an Event</a>
+                    <a href="corporate.html"
+                        class="btn btn-solid relative z-10 !bg-white !text-black hover:!bg-[var(--accent-color)] hover:!text-white">Plan
+                        an Event</a>
                 </div>
             </div>
         </section>
@@ -538,12 +932,16 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-10 pt-4">
                 <div class="lg:col-span-4">
                     <div class="mb-8">
-                        <a href="index.html" class="text-2xl brand-logo tracking-widest uppercase flex items-center whitespace-nowrap" style="color: var(--text-main) !important; text-decoration: none;">
-                            <i class="fas fa-utensils" style="color: var(--accent-color); margin-right: 0.45em; font-size: 0.9em; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(211,84,0,0.35));"></i>CulinaryStudio
+                        <a href="index.html"
+                            class="text-2xl brand-logo tracking-widest uppercase flex items-center whitespace-nowrap"
+                            style="color: var(--text-main) !important; text-decoration: none;">
+                            <i class="fas fa-utensils"
+                                style="color: var(--accent-color); margin-right: 0.45em; font-size: 0.9em; vertical-align: middle; filter: drop-shadow(0 0 4px rgba(211,84,0,0.35));"></i>CulinaryStudio
                         </a>
                     </div>
                     <p class="opacity-90 leading-relaxed text-sm mb-8 max-w-sm" style="color: var(--text-muted);">
-                        Dedicated to the meticulous art of gastronomy. Our studio provides unparalleled cooking workshops, intimate masterclasses, and curated culinary experiences.
+                        Dedicated to the meticulous art of gastronomy. Our studio provides unparalleled cooking
+                        workshops, intimate masterclasses, and curated culinary experiences.
                     </p>
                     <div class="flex space-x-4">
                         <a href="#" class="social-link-circle"><i class="fab fa-instagram"></i></a>
@@ -551,7 +949,7 @@
                         <a href="#" class="social-link-circle"><i class="fab fa-pinterest-p"></i></a>
                     </div>
                 </div>
-                
+
                 <div class="lg:col-span-8">
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10">
                         <div>
@@ -575,16 +973,24 @@
                         <div class="sm:col-span-2 md:col-span-1">
                             <h4>The Studio</h4>
                             <ul class="space-y-5 text-[var(--text-muted)] text-sm">
-                                <li class="flex items-start gap-4"><i class="fas fa-map-marker-alt mt-1 shrink-0" style="color: var(--accent-color);"></i><span>45 Rue de la Cuisine<br>Paris, France 75001</span></li>
-                                <li class="flex items-center gap-4"><i class="fas fa-phone shrink-0" style="color: var(--accent-color);"></i><a href="tel:+33123456789" class="break-all hover:text-[var(--accent-color)]">+33 1 23 45 67 89</a></li>
-                                <li class="flex items-center gap-4"><i class="fas fa-envelope shrink-0" style="color: var(--accent-color);"></i><a href="contact.html" class="break-all hover:text-[var(--accent-color)]">hello@culinarystudio.com</a></li>
+                                <li class="flex items-start gap-4"><i class="fas fa-map-marker-alt mt-1 shrink-0"
+                                        style="color: var(--accent-color);"></i><span>45 Rue de la Cuisine<br>Paris,
+                                        France 75001</span></li>
+                                <li class="flex items-center gap-4"><i class="fas fa-phone shrink-0"
+                                        style="color: var(--accent-color);"></i><a href="tel:+33123456789"
+                                        class="break-all hover:text-[var(--accent-color)]">+33 1 23 45 67 89</a></li>
+                                <li class="flex items-center gap-4"><i class="fas fa-envelope shrink-0"
+                                        style="color: var(--accent-color);"></i><a href="contact.html"
+                                        class="break-all hover:text-[var(--accent-color)]">hello@culinarystudio.com</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="footer-bottom flex flex-col md:flex-row justify-between items-center text-xs gap-6 uppercase tracking-[1px]">
+            <div
+                class="footer-bottom flex flex-col md:flex-row justify-between items-center text-xs gap-6 uppercase tracking-[1px]">
                 <p style="color: var(--text-muted);">&copy; 2026 CulinaryStudio. All rights reserved.</p>
                 <div class="flex flex-wrap justify-center gap-6 sm:gap-8">
                     <a href="#">Terms of Service</a>
@@ -608,73 +1014,74 @@
         });
 
         // Mobile Drawer Logic
-        const mobileBtn = document.getElementById('mobile-btn'); 
-        const fullscreenMenu = document.getElementById('fullscreen-menu'); 
-        const closeMenu = document.getElementById('close-menu'); 
+        const mobileBtn = document.getElementById('mobile-btn');
+        const fullscreenMenu = document.getElementById('fullscreen-menu');
+        const closeMenu = document.getElementById('close-menu');
         const drawerOverlay = document.getElementById('drawer-overlay');
-        
-        function toggleMenu() { 
-            fullscreenMenu.classList.toggle('active'); 
+
+        function toggleMenu() {
+            fullscreenMenu.classList.toggle('active');
             drawerOverlay.classList.toggle('active');
             document.body.style.overflow = fullscreenMenu.classList.contains('active') ? 'hidden' : 'auto';
         }
-        
-        mobileBtn.onclick = toggleMenu; 
-        closeMenu.onclick = toggleMenu; 
-        drawerOverlay.onclick = toggleMenu; 
-        
+
+        mobileBtn.onclick = toggleMenu;
+        closeMenu.onclick = toggleMenu;
+        drawerOverlay.onclick = toggleMenu;
+
         // Theme Toggle Logic
         const themeDesktop = document.getElementById('theme-toggle-desktop');
-        const themeMobile = document.getElementById('theme-toggle-mobile'); 
+        const themeMobile = document.getElementById('theme-toggle-mobile');
         const theme = localStorage.getItem('theme') || 'light';
 
         function updateThemeUI(isDark) {
             if (isDark) {
-                document.body.classList.add('dark-mode'); 
-                if(themeMobile) themeMobile.classList.add('active');
+                document.body.classList.add('dark-mode');
+                if (themeMobile) themeMobile.classList.add('active');
             } else {
                 document.body.classList.remove('dark-mode');
-                if(themeMobile) themeMobile.classList.remove('active');
+                if (themeMobile) themeMobile.classList.remove('active');
             }
         }
-        
+
         updateThemeUI(theme === 'dark');
-        
-        function toggleTheme() { 
+
+        function toggleTheme() {
             const isDark = !document.body.classList.contains('dark-mode');
             updateThemeUI(isDark);
-            localStorage.setItem('theme', isDark ? 'dark' : 'light'); 
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
         }
-        
-        themeDesktop.onclick = toggleTheme; 
-        if(themeMobile) themeMobile.onclick = toggleTheme;
-        
+
+        themeDesktop.onclick = toggleTheme;
+        if (themeMobile) themeMobile.onclick = toggleTheme;
+
         // RTL Logic
-        const rtlBtn = document.getElementById('rtl-btn'); 
-        const rtlMobile = document.getElementById('rtl-toggle-mobile'); 
+        const rtlBtn = document.getElementById('rtl-btn');
+        const rtlMobile = document.getElementById('rtl-toggle-mobile');
         const dir = localStorage.getItem('dir') || 'ltr';
-        
+
         function updateRTLUI(currentDir) {
             const isRTL = currentDir === 'rtl';
             if (rtlBtn) rtlBtn.innerText = isRTL ? 'RTL' : 'LTR';
             if (rtlMobile) rtlMobile.innerText = isRTL ? 'RTL' : 'LTR';
         }
 
-        if (dir === 'rtl') { 
-            document.documentElement.dir = 'rtl'; 
+        if (dir === 'rtl') {
+            document.documentElement.dir = 'rtl';
         }
         updateRTLUI(dir);
-        
-        function toggleRTL() { 
-            const isRTL = document.documentElement.dir === 'rtl'; 
+
+        function toggleRTL() {
+            const isRTL = document.documentElement.dir === 'rtl';
             const newDir = isRTL ? 'ltr' : 'rtl';
-            document.documentElement.dir = newDir; 
-            localStorage.setItem('dir', newDir); 
+            document.documentElement.dir = newDir;
+            localStorage.setItem('dir', newDir);
             updateRTLUI(newDir);
         }
-        
-        if (rtlBtn) rtlBtn.onclick = toggleRTL; 
+
+        if (rtlBtn) rtlBtn.onclick = toggleRTL;
         if (rtlMobile) rtlMobile.onclick = toggleRTL;
     </script>
 </body>
+
 </html>
