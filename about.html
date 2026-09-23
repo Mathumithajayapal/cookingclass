@@ -294,7 +294,7 @@
     </div>
 
     <!-- HERO BANNER COMPONENT -->
-    <section class="relative w-full h-[100dvh] pt-20 flex items-center justify-center overflow-hidden border-b border-[var(--border-color)]">
+    <section class="relative w-full min-h-[100dvh] pt-32 pb-20 flex items-center justify-center overflow-hidden border-b border-[var(--border-color)]">
         <div class="absolute inset-0 z-0 bg-black">
             <img src="images/cookingclass (1).jpg" alt="Chefs collaborating in the kitchen" class="w-full h-full object-cover animate-zoom opacity-50" />
             <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/40 to-[var(--bg-color)]"></div>
@@ -381,38 +381,45 @@
                     <p class="text-[var(--text-muted)] text-base">We believe that great food is built on a foundation of respect—respect for ingredients, for technique, and for the people we share it with.</p>
                 </div>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">
-                    <!-- Value 1 -->
-                    <div class="bg-[var(--bg-card)] p-10 border border-[var(--border-color)] hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl">
-                        <div class="w-14 h-14 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center mb-6 text-[var(--accent-color)] text-xl border border-[var(--border-color)]">
-                            <i class="fas fa-leaf"></i>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-left">                    <!-- Value 1 -->
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl overflow-hidden flex flex-col">
+                        <div class="h-48 w-full overflow-hidden">
+                            <img src="images/cookingclass (8).jpg" alt="Sustainability" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                         </div>
-                        <h3 class="text-xl font-serif text-[var(--text-main)] mb-3">Sustainability</h3>
-                        <p class="text-sm text-[var(--text-muted)] leading-relaxed">We source 80% of our ingredients from local, organic farms to reduce our carbon footprint and support the community.</p>
+                        <div class="p-8 flex-1">
+                            <h3 class="text-xl font-serif text-[var(--text-main)] mb-3">Sustainability</h3>
+                            <p class="text-sm text-[var(--text-muted)] leading-relaxed">We source 80% of our ingredients from local, organic farms to reduce our carbon footprint and support the community.</p>
+                        </div>
                     </div>
                     <!-- Value 2 -->
-                    <div class="bg-[var(--bg-card)] p-10 border border-[var(--border-color)] hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl">
-                        <div class="w-14 h-14 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center mb-6 text-[var(--accent-color)] text-xl border border-[var(--border-color)]">
-                            <i class="fas fa-fire-burner"></i>
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl overflow-hidden flex flex-col">
+                        <div class="h-48 w-full overflow-hidden">
+                            <img src="images/cookingclass (4).jpg" alt="Mastery" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                         </div>
-                        <h3 class="text-xl font-serif text-[var(--text-main)] mb-3">Mastery</h3>
-                        <p class="text-sm text-[var(--text-muted)] leading-relaxed">We focus on mastering fundamental techniques rather than just memorizing recipes, empowering you to create intuitively.</p>
+                        <div class="p-8 flex-1">
+                            <h3 class="text-xl font-serif text-[var(--text-main)] mb-3">Mastery</h3>
+                            <p class="text-sm text-[var(--text-muted)] leading-relaxed">We focus on mastering fundamental techniques rather than just memorizing recipes, empowering you to create intuitively.</p>
+                        </div>
                     </div>
                     <!-- Value 3 -->
-                    <div class="bg-[var(--bg-card)] p-10 border border-[var(--border-color)] hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl">
-                        <div class="w-14 h-14 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center mb-6 text-[var(--accent-color)] text-xl border border-[var(--border-color)]">
-                            <i class="fas fa-users"></i>
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl overflow-hidden flex flex-col">
+                        <div class="h-48 w-full overflow-hidden">
+                            <img src="images/cookingclass (11).jpg" alt="Community" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                         </div>
-                        <h3 class="text-xl font-serif text-[var(--text-main)] mb-3">Community</h3>
-                        <p class="text-sm text-[var(--text-muted)] leading-relaxed">Food brings people together. Our kitchen benches are designed to foster conversation, collaboration, and lasting friendships.</p>
+                        <div class="p-8 flex-1">
+                            <h3 class="text-xl font-serif text-[var(--text-main)] mb-3">Community</h3>
+                            <p class="text-sm text-[var(--text-muted)] leading-relaxed">Food brings people together. Our kitchen benches are designed to foster conversation, collaboration, and lasting friendships.</p>
+                        </div>
                     </div>
                     <!-- Value 4 -->
-                    <div class="bg-[var(--bg-card)] p-10 border border-[var(--border-color)] hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl">
-                        <div class="w-14 h-14 bg-[var(--bg-secondary)] rounded-full flex items-center justify-center mb-6 text-[var(--accent-color)] text-xl border border-[var(--border-color)]">
-                            <i class="fas fa-star"></i>
+                    <div class="bg-[var(--bg-card)] border border-[var(--border-color)] hover:-translate-y-2 transition-transform duration-300 shadow-sm hover:shadow-xl overflow-hidden flex flex-col">
+                        <div class="h-48 w-full overflow-hidden">
+                            <img src="images/cookingclass (10).jpg" alt="Excellence" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
                         </div>
-                        <h3 class="text-xl font-serif text-[var(--text-main)] mb-3">Excellence</h3>
-                        <p class="text-sm text-[var(--text-muted)] leading-relaxed">From the sharpness of our knives to the clarity of our curriculum, we refuse to compromise on the quality of your experience.</p>
+                        <div class="p-8 flex-1">
+                            <h3 class="text-xl font-serif text-[var(--text-main)] mb-3">Excellence</h3>
+                            <p class="text-sm text-[var(--text-muted)] leading-relaxed">From the sharpness of our knives to the clarity of our curriculum, we refuse to compromise on the quality of your experience.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -494,7 +501,7 @@
                     <!-- Founder 2 -->
                     <div class="flex flex-col sm:flex-row items-center gap-8 bg-[var(--bg-card)] p-8 border border-[var(--border-color)] shadow-sm">
                         <div class="w-40 h-40 rounded-full overflow-hidden shrink-0 border-4 border-[var(--bg-secondary)] shadow-inner">
-                            <img src="images/cookingclass (7).jpg" class="w-full h-full object-cover" alt="Founder" />
+                            <img src="images/cookingclass (15).jpg" class="w-full h-full object-cover" alt="Founder" />
                         </div>
                         <div class="text-center sm:text-left">
                             <h3 class="text-2xl font-serif text-[var(--text-main)] mb-1">Aria Vance</h3>
